@@ -2,7 +2,7 @@
     width: 100%;
     background-color: azure;
 }
-.page__profile-user {
+.user {
     display: flex;
 
 }
