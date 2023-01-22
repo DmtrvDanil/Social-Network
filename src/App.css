@@ -8,17 +8,3 @@
 	display: flex;
 	justify-content: space-between;
 }
-.header__icon {
-	width: 100px;
-}
-.header, .nav {
-	background-color: blueviolet;
-}
-.page {
-	width: 100%;
-	background-color: azure;
-}
-.page__profile-user {
-	display: flex;
-
-}	
