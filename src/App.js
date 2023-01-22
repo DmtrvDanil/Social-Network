@@ -49,7 +49,7 @@ function App() {
 						</p>
 						<div className='user__info'>
 							<p className='user__info-item'>
-								Date: 2 May
+								Date: 2 May;
 							</p>
 							<p className='user__info-item'>
 								City: California
