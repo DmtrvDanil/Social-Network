@@ -1,33 +1,34 @@
 import React from "react";
 import style from './Nav.module.css'
+import {NavLink} from "react-router-dom";
 const Nav = () => {
     return (
         <nav className={style.nav}>
             <ul className={style.list}>
                 <li className={style.list_tem}>
-                    <a href='#'>
+                    <NavLink to='/profile'>
                         Profile
-                    </a>
+                    </NavLink>
                 </li>
                 <li className={style.list_item}>
-                    <a href='#'>
+                    <NavLink to='/dialogs'>
                         Messages
-                    </a>
+                    </NavLink>
                 </li>
                 <li className={style.list_item}>
-                    <a href='#'>
+                    <NavLink to='/news'>
                         News
-                    </a>
+                    </NavLink>
                 </li>
                 <li className={style.list_item}>
-                    <a href='#'>
+                    <NavLink to='/music'>
                         Music
-                    </a>
+                    </NavLink>
                 </li>
                 <li className={style.list_item}>
-                    <a href='#'>
+                    <NavLink to='/settings'>
                         Setting
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
