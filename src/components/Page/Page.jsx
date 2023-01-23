@@ -1,4 +1,5 @@
-wimport React from "react";
+import React from "react";
+import Post from './Post/Post'
 import style from './Page.module.css'
 const Page = () => {
     return (
@@ -33,10 +34,10 @@ const Page = () => {
                     </button>
                 </div>
                 <div className={style.post__wrapper}>
-                    <Post name={'Danil'} age={21}></Post>
-                    <Post name={'Tema'} age={25454}></Post>
-                    <Post name={'Maximum'} age={422}></Post>
-                    <Post name={'Kringaterina'} age={7777777777}></Post>
+                    <Post name={'Danil'} age={21} message={"ya kringe"}></Post>
+                    <Post name={'Tema'} age={25454} message={"lol transh"}></Post>
+                    <Post name={'Maximum'} age={422} message={"jest kringe"}></Post>
+                    <Post name={'Kringaterina'} age={7777777777} message={"kringe kapec"}></Post>
                 </div>
             </div>
         </div>
