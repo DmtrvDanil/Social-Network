@@ -6,6 +6,11 @@ const Nav = () => {
         <nav className={style.nav}>
             <ul className={style.list}>
                 <li className={style.list_tem}>
+                    <NavLink to='/page'>
+                        Page
+                    </NavLink>
+                </li>
+                <li className={style.list_tem}>
                     <NavLink to='/profile'>
                         Profile
                     </NavLink>
