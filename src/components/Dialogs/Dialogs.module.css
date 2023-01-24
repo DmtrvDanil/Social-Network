@@ -1,0 +1,8 @@
+.wrapper {
+display: flex;
+}
+.dialogs__list {
+    margin: 15px 15px 0 0;
+    display: flex;
+    flex-direction: column;
+}

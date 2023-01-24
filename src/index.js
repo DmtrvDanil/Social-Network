@@ -5,10 +5,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+let postsData = [
+    {name: 'Danil', age: '21', message: 'lol'},
+    {name: 'Danil', age: '21', message: 'lol'},
+    {name: 'Danil', age: '21', message: 'lol'},
+    {name: 'Danil', age: '21', message: 'lol'}
+];
+let dialogData = [
+    {name: 'Tema', message: 'hello'},
+    {name: 'Katya', message: 'hello_lol'}
+];
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App postsData={postsData} dialogData={dialogData}/>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

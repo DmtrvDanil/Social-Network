@@ -3,7 +3,13 @@ import style from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import {NavLink} from "react-router-dom";
 
-const Dialogs = () => {
+const Dialogs = (props) => {
+    let dialogElements = props.dialogData.map((dialog) => {
+        return (
+            <Dialog message={dialog.message} name={dialog.name}></Dialog>
+        )
+    })
+
     return (
         <div className={style.wrapper}>
             <div className={style.dialogs__list}>
@@ -11,7 +17,9 @@ const Dialogs = () => {
                 <NavLink to='/dialogs/2'>Max</NavLink>
                 <NavLink to='/dialogs/3'>Tema</NavLink>
             </div>
-            <Dialog></Dialog>
+            <div className={style.chat__wrapper}>
+                {dialogElements}
+            </div>
         </div>
     );
 }

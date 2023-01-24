@@ -1,0 +1,9 @@
+.user {
+    display: flex;
+}
+.avatar {
+    max-width: 120px;
+}
+.text {
+    margin-left: 20px;
+}
