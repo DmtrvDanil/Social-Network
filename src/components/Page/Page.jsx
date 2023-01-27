@@ -4,11 +4,23 @@ import style from './Page.module.css'
 import Profile from "../Profile/Profile";
 
 const Page = (props) => {
-    let postElements = props.postsData.map((post) => {
+    let postElements = props.postPage.postsData.map((post) => {
         return (
             <Post name={post.name} age={post.age} message={post.message}></Post>
         )
     })
+    let textMessage = React.createRef();
+
+    let addPost = () => {
+        let message = textMessage.current.value;
+        props.addPost(message);
+    }
+    let updateText = () => {
+       let message= textMessage.current.value;
+        props.updateText(message);
+        textMessage.current.value = props.postText;
+    }
+
     return (
         <div className={style.page}>
             <Profile name='Danil' date='2 May 2001' city='California'></Profile>
@@ -17,8 +29,8 @@ const Page = (props) => {
                     <h3 className='posts__heading'>
                         My posts
                     </h3>
-                    <textarea className='posts__textAdd'></textarea>
-                    <button className='posts__btn'>
+                    <textarea className='posts__textAdd' ref={textMessage} onChange={updateText} value={props.postPage.postText}/>
+                    <button className='posts__btn' onClick={addPost}>
                         Send
                     </button>
                 </div>
