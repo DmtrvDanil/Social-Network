@@ -9,13 +9,18 @@ let state = {
         ],
         postText: 'something'
     },
- dialogData: [
+ dialogPage: {
+        dialogData: [
     {name: 'Tema', message: 'hello'},
     {name: 'Katya', message: 'hello_lol'}
-],
-    profileData: [
-        {name: 'Danil', date: '02.05.2001', city: 'California'}
-    ]
+ ],
+     messageText: 'Write your message'
+},
+    profilePage: {
+        profileData: [
+            {name: 'Danil', date: '02.05.2001', city: 'California'}
+        ]
+    }
 }
 
 export let addPost = (postMesage) => {
@@ -30,6 +35,11 @@ export let addPost = (postMesage) => {
 
 export let updateText = (postText) => {
     state.postPage.postText = postText;
+    renderTree(state);
+}
+
+export let updateMessageText = (messageText) => {
+    state.dialogPage.messageText = messageText;
     renderTree(state);
 }
 

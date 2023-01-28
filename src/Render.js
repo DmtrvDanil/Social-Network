@@ -1,4 +1,4 @@
-import state, {addPost, updateText} from "./redux/state";
+import state, {addPost, updateText, updateMessageText} from "./redux/state";
 import React from "react";
 import App from "./App";
 import ReactDOM from "react-dom/client";
@@ -10,7 +10,7 @@ export let renderTree = (state) => {
     root.render(
         <React.StrictMode>
             {/*<App postsData={postsData} dialogData={dialogData}/>*/}
-            <App state={state} addPost={addPost} updateText={updateText}/>
+            <App state={state} addPost={addPost} updateText={updateText} updateMessageText={updateMessageText}/>
         </React.StrictMode>
     );
 }

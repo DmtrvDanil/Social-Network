@@ -1,7 +1,9 @@
 import React from "react";
 import style from './Profile.module.css'
 
+
 const Profile = (props) => {
+    console.log(props.profilePage);
     return (
         <div className={style.wrapper}>
             <div className={style.user}>

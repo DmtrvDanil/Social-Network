@@ -18,9 +18,9 @@ function App(props) {
                     <Nav></Nav>
                     <Routes>
                         <Route exact path='/profile'
-                               element={<Profile profileData={props.state.profileData}/>}/>
+                               element={<Profile profilePage={props.state.profilePage}/>}/>
                         <Route exact path='/page' element={<Page postPage={props.state.postPage} addPost={props.addPost} updateText={props.updateText}/>}/>
-                        <Route exact path='/dialogs' element={<Dialogs dialogData={props.state.dialogData}/>}/>
+                        <Route exact path='/dialogs' element={<Dialogs dialogPage={props.state.dialogPage} updateMessageText={props.updateMessageText}/>}/>
                     </Routes>
                 </div>
             </div>
