@@ -2,6 +2,7 @@ import React from "react";
 import Post from './Post/Post'
 import style from './Page.module.css'
 import Profile from "../Profile/Profile";
+import {addPostActionCreator, updateTextActionCreator} from "../../redux/state";
 
 const Page = (props) => {
     let postElements = props.postPage.postsData.map((post) => {
@@ -12,13 +13,11 @@ const Page = (props) => {
     let textMessage = React.createRef();
 
     let addPost = () => {
-        let message = textMessage.current.value;
-        props.addPost(message);
+        props.dispatch(addPostActionCreator());
     }
     let updateText = () => {
        let message= textMessage.current.value;
-        props.updateText(message);
-        textMessage.current.value = props.postText;
+       props.dispatch(updateTextActionCreator(message));
     }
 
     return (
