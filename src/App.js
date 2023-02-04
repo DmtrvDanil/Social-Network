@@ -6,9 +6,12 @@ import Page from "./components/Page/Page";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Dialogs from "./components/Dialogs/Dialogs";
+import PageContainer from "./components/Page/Page-container";
+import DialogsContainer from "./components/Dialogs/Dialog/Dialogs-container";
 
 
 function App(props) {
+    debugger;
 
     return (
         <BrowserRouter>
@@ -19,8 +22,8 @@ function App(props) {
                     <Routes>
                         <Route exact path='/profile'
                                element={<Profile profilePage={props.store.profilePage}/>}/>
-                        <Route exact path='/page' element={<Page postPage={props.store.postPage} dispatch={props.dispatch}/>}/>
-                        <Route exact path='/dialogs' element={<Dialogs dialogPage={props.store.dialogPage} dispatch={props.dispatch}/>}/>
+                        <Route exact path='/page' element={<PageContainer store={props.store} dispatch={props.dispatch}/>}/>
+                        <Route exact path='/dialogs' element={<DialogsContainer store={props.store} dispatch={props.dispatch}/>}/>
                     </Routes>
                 </div>
             </div>
