@@ -23,6 +23,7 @@ function App(props) {
                                element={<Profile profilePage={props.store.profilePage}/>}/>
                         <Route exact path='/page' element={<PageContainer store={props.store} dispatch={props.dispatch}/>}/>
                         <Route exact path='/dialogs' element={<DialogsContainer store={props.store} dispatch={props.dispatch}/>}/>
+                        <Route exact path='/users' element={<div>users</div>}/>
                     </Routes>
                 </div>
             </div>
