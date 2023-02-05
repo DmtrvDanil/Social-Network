@@ -10,18 +10,26 @@ let initialState = {
         messageText: 'Write your message'
 }
 const dialogsReducer = (state = initialState, action) => {
-    if (action.type === UPDATE_MESSAGE_TEXT) {
-        state.messageText = action.messageText;
+    switch (action.type) {
+        case UPDATE_MESSAGE_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.messageText = action.messageText;
+            return stateCopy;
+        };
+        case SEND_MESSAGE: {
+            let newMessage = {
+                name: 'Tema',
+                message: state.messageText
+            };
+            let stateCopy = {...state};
+            stateCopy.dialogData = [...state.dialogData];
+            stateCopy.dialogData.push(newMessage);
+            stateCopy.messageText = '';
+            return stateCopy;
+        };
+        default:
+            return state;
     }
-    else if (action.type === SEND_MESSAGE) {
-        let newMessage = {
-            name: 'Tema',
-            message: state.messageText
-            }
-        state.dialogData.push(newMessage);
-        state.messageText = '';
-    }
-    return state;
 }
 
 export const sendMessageActionCreator = () => {

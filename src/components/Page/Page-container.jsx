@@ -1,18 +1,24 @@
 import React from "react";
 import {addPostActionCreator, updateTextActionCreator} from "../../redux/page-reducer";
 import Page from "./Page";
+import {connect} from "react-redux";
 
-const PageContainer = (props) => {
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+let mapStateToProps = (state) => {
+    return {
+        postPage: state.postPage
     }
-    let updateText = (message) => {
-       props.dispatch(updateTextActionCreator(message));
-    }
-
-    return (
-        <Page addPost={addPost} updateText={updateText} postPage={props.store.postPage}></Page>
-    );
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: () => {
+            dispatch(addPostActionCreator())
+        },
+        updateText: (message) => {
+            dispatch(updateTextActionCreator(message));
+        }
+    }
+}
+const PageContainer = connect(mapStateToProps, mapDispatchToProps)(Page);
 
 export default PageContainer;
