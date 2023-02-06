@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Dialogs from "./components/Dialogs/Dialogs";
 import PageContainer from "./components/Page/Page-container";
 import DialogsContainer from "./components/Dialogs/Dialog/Dialogs-container";
+import UsersContainer from "./components/Users/User/Users-container";
 
 
 function App(props) {
@@ -23,7 +24,7 @@ function App(props) {
                                element={<Profile profilePage={props.store.profilePage}/>}/>
                         <Route exact path='/page' element={<PageContainer store={props.store} dispatch={props.dispatch}/>}/>
                         <Route exact path='/dialogs' element={<DialogsContainer store={props.store} dispatch={props.dispatch}/>}/>
-                        <Route exact path='/users' element={<div>users</div>}/>
+                        <Route exact path='/users' element={<UsersContainer store={props.store} dispatch={props.dispatch}/>}/>
                     </Routes>
                 </div>
             </div>

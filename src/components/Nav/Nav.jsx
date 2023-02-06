@@ -22,6 +22,11 @@ const Nav = () => {
                     </NavLink>
                 </li>
                 <li className={style.list_item}>
+                    <NavLink to='/users'>
+                        Users
+                    </NavLink>
+                </li>
+                <li className={style.list_item}>
                     <NavLink to='/news'>
                         News
                     </NavLink>
