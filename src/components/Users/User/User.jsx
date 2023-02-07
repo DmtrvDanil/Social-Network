@@ -5,17 +5,19 @@ const User = (props) => {
         if (props.followStatus === true) props.unfollow(props.userId);
         else props.follow(props.userId);
     }
+    let photo = props.photo;
+    if ( photo == null) photo = "https://www.shutterstock.com/image-vector/cat-avatar-profile-picture-7-260nw-1660656721.jpg"
     return (
         <div>
-            <img src={props.photo} alt="photo"/>
+            <img src={photo} alt="photo"/>
             <p>
-                {props.name};
+                {props.name}
             </p>
             <p>
-                {props.age};
+                {props.age}
             </p>
             <p>
-                {props.country}
+                California
             </p>
             <p>
                 {props.city}
