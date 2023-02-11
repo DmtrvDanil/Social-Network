@@ -1,13 +1,15 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SETUSERS = 'SETUSERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_USERS_COUNT = 'SET_USERS_COUNT,';
 
 
 let initialState = {
-        usersData: [
-            // {id: 1, followStatus: false, name: 'Danil', age: '21', location: {country: 'USA', city: 'California'}, photo: 'https://www.shutterstock.com/image-vector/cat-avatar-profile-picture-7-260nw-1660656721.jpg'},
-            // {id: 2, followStatus: true, name: 'Tema', age: '20', location: {country: 'USA', city: 'California'}, photo: 'https://www.shutterstock.com/image-vector/cat-avatar-profile-picture-7-260nw-1660656721.jpg'}
-        ]
+        usersData: [],
+        pageSize: 5,
+        countUsers: 0,
+        selectedPage: 2
 }
 const  usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -36,7 +38,19 @@ const  usersReducer = (state = initialState, action) => {
         case SETUSERS: {
             return {
                 ...state,
-                usersData: [...state.usersData, ...action.usersData]
+                usersData: [...action.usersData]
+            }
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                selectedPage: action.currentPage
+            }
+        }
+        case SET_USERS_COUNT: {
+            return {
+                ...state,
+                usersCount: action.usersCount
             }
         }
         default:
@@ -62,4 +76,19 @@ export const followAC = (userId) => {
         usersData
     }
  }
+
+export const setSelPageAC = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage
+    }
+}
+
+export const setCountUsersAC = (usersCount) => {
+    return {
+        type: SET_USERS_COUNT,
+        usersCount
+    }
+}
+
 export default usersReducer;
