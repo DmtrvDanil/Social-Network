@@ -22,7 +22,6 @@ const Page = (props) => {
 
     return (
         <div className={style.page}>
-            <Profile name='Danil' date='2 May 2001' city='California'></Profile>
             <div className='posts'>
                 <div className='addPost'>
                     <h3 className='posts__heading'>

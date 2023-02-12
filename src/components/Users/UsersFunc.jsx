@@ -2,7 +2,7 @@
 // import User from "./User/User";
 // import axios from 'axios';
 //
-// const Users = (props) => {
+// const UsersCont = (props) => {
 //
 //  let getUsers = () => {
 //      if (props.usersPage.usersData.length === 0) {
@@ -31,4 +31,4 @@
 //     )
 // }
 //
-// export default Users;
+// export default UsersCont;

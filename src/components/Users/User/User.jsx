@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 const User = (props) => {
     let onFollow = () => {
@@ -9,7 +10,10 @@ const User = (props) => {
     if ( photo == null) photo = "https://www.shutterstock.com/image-vector/cat-avatar-profile-picture-7-260nw-1660656721.jpg"
     return (
         <div>
-            <img src={photo} alt="photo"/>
+            <NavLink to={'/profile' + props.userId}>
+                <img src={photo} alt="photo"/>
+            </NavLink>
+
             <p>
                 {props.name}
             </p>

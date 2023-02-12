@@ -3,13 +3,15 @@ const UNFOLLOW = 'UNFOLLOW';
 const SETUSERS = 'SETUSERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USERS_COUNT = 'SET_USERS_COUNT,';
+const PRELOAD = 'PRELOAD';
 
 
 let initialState = {
         usersData: [],
         pageSize: 5,
         countUsers: 0,
-        selectedPage: 2
+        selectedPage: 2,
+        preload: true
 }
 const  usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -53,6 +55,12 @@ const  usersReducer = (state = initialState, action) => {
                 usersCount: action.usersCount
             }
         }
+        case PRELOAD: {
+            return {
+                ...state,
+                preload: action.preload
+            }
+        }
         default:
             return state;
     }
@@ -88,6 +96,13 @@ export const setCountUsersAC = (usersCount) => {
     return {
         type: SET_USERS_COUNT,
         usersCount
+    }
+}
+
+export const preloadAC = (preload) => {
+    return {
+        type: PRELOAD,
+        preload
     }
 }
 
