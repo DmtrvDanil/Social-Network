@@ -21,7 +21,8 @@ function App(props) {
                 <div className='content'>
                     <Nav></Nav>
                     <Routes>
-                        <Route exact path='/profile/:userId' element={<ProfileContainer store={props.store} dispatch={props.dispatch}/>}/>
+                        <Route exact path='/profile/:userId?' element={<ProfileContainer store={props.store} dispatch={props.dispatch}/>}/>
+                        {/*<Route path=":userId" element={<ProfileContainer store={props.store} dispatch={props.dispatch}/>}/>*/}
                         <Route exact path='/page' element={<PageContainer store={props.store} dispatch={props.dispatch}/>}/>
                         <Route exact path='/dialogs' element={<DialogsContainer store={props.store} dispatch={props.dispatch}/>}/>
                         <Route exact path='/users' element={<UsersContainer store={props.store} dispatch={props.dispatch}/>}/>

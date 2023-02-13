@@ -10,7 +10,7 @@ const User = (props) => {
     if ( photo == null) photo = "https://www.shutterstock.com/image-vector/cat-avatar-profile-picture-7-260nw-1660656721.jpg"
     return (
         <div>
-            <NavLink to={'/profile' + props.userId}>
+            <NavLink to={'/profile/' + props.userId}>
                 <img src={photo} alt="photo"/>
             </NavLink>
 

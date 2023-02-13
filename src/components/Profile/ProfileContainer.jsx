@@ -24,54 +24,54 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 
-// export function withRouter(Children) {
-//     return (props) => {
-//
-//         const match = {params: useParams()};
-//         return <Children {...props} match={match}/>
-//     }
-// }
+export function withRouter(Children) {
+    return (props) => {
 
-
-const ProfileCont = (props) => {
-
-    const params = useParams();
-    debugger;
-    let userId = props.match.params.userId;
-    useEffect(() => {
-        props.preloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${params.userId}`).then(response => {
-            props.preloader(false);
-            props.getProfile(response.data);
-        })
-    })
-
-    return (
-
-        <Profile profilePage={props.profilePage}></Profile>
-    );
+        const match = {params: useParams()};
+        return <Children {...props} match={match}/>
+    }
 }
 
 
-// class ProfileCont extends React.Component {
-//     componentDidMount() {
-//         let userId = this.props.match.params.userId;
-//         this.props.preloader(true);
-//         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
-//             this.props.preloader(false);
-//             this.props.getProfile(response.data);
-//             debugger;
+// const ProfileCont = (props) => {
+//
+//     const params = useParams();
+//     debugger;
+//     let userId = params.userId;
+//     useEffect(() => {
+//         props.preloader(true);
+//         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+//             props.preloader(false);
+//             props.getProfile(response.data);
 //         })
-//     }
-//     render() {
-//         return (
-//                 <Profile {...this.props} profilePage={this.props.profilePage}></Profile>
-//         )
-//     }
+//     })
+//
+//     return (
+//
+//         <Profile profilePage={props.profilePage}></Profile>
+//     );
 // }
 
 
-// const ProfileContWithRouter = withRouter(ProfileCont);
+class ProfileCont extends React.Component {
+    componentDidMount() {
+        let userId = this.props.match.params.userId;
+        console.log(this.props.match.params);
+        this.props.preloader(true);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+            this.props.preloader(false);
+            this.props.getProfile(response.data);
+        })
+    }
+    render() {
+        return (
+                <Profile {...this.props} profilePage={this.props.profilePage}></Profile>
+        )
+    }
+}
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileCont);
+
+const ProfileContWithRouter = withRouter(ProfileCont);
+
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileContWithRouter);
 export default ProfileContainer;
