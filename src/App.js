@@ -10,6 +10,7 @@ import PageContainer from "./components/Page/Page-container";
 import DialogsContainer from "./components/Dialogs/Dialog/Dialogs-container";
 import UsersContainer from "./components/Users/User/Users-container";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 function App(props) {
@@ -17,10 +18,11 @@ function App(props) {
     return (
         <BrowserRouter>
             <div className="App">
-                <Header></Header>
+                <HeaderContainer store={props.store} dispatch={props.dispatch} ></HeaderContainer>
                 <div className='content'>
                     <Nav></Nav>
                     <Routes>
+                        {/*<Route element={<HeaderContainer store={props.store} dispatch={props.dispatch}/>}/>*/}
                         <Route exact path='/profile/:userId?' element={<ProfileContainer store={props.store} dispatch={props.dispatch}/>}/>
                         {/*<Route path=":userId" element={<ProfileContainer store={props.store} dispatch={props.dispatch}/>}/>*/}
                         <Route exact path='/page' element={<PageContainer store={props.store} dispatch={props.dispatch}/>}/>

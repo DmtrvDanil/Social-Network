@@ -32,31 +32,9 @@ export function withRouter(Children) {
     }
 }
 
-
-// const ProfileCont = (props) => {
-//
-//     const params = useParams();
-//     debugger;
-//     let userId = params.userId;
-//     useEffect(() => {
-//         props.preloader(true);
-//         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
-//             props.preloader(false);
-//             props.getProfile(response.data);
-//         })
-//     })
-//
-//     return (
-//
-//         <Profile profilePage={props.profilePage}></Profile>
-//     );
-// }
-
-
 class ProfileCont extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        console.log(this.props.match.params);
         this.props.preloader(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
             this.props.preloader(false);
@@ -64,6 +42,7 @@ class ProfileCont extends React.Component {
         })
     }
     render() {
+        debugger;
         return (
                 <Profile {...this.props} profilePage={this.props.profilePage}></Profile>
         )
