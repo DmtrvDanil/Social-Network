@@ -4,6 +4,7 @@ const SETUSERS = 'SETUSERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USERS_COUNT = 'SET_USERS_COUNT,';
 const PRELOAD = 'PRELOAD';
+const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
 
 
 let initialState = {
@@ -12,7 +13,8 @@ let initialState = {
         countUsers: 0,
         selectedPage: 2,
         preload: true,
-        followed: false
+        followed: false,
+        followProgress: []
 }
 const  usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -36,6 +38,17 @@ const  usersReducer = (state = initialState, action) => {
                     }
                     return u;
                 })
+            }
+        }
+        case FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                followProgress: action.followProgress ?
+                    state.followProgress.push(action.userId) :
+                    state.followProgress.filter(id => id != action.userId)
+                    // action.followProgress ?
+                    // [...state.followProgress, action.userId] :
+                    // state.followProgress.filter(id => id != action.userId)
             }
         }
         case SETUSERS: {
@@ -104,6 +117,13 @@ export const preloadAC = (preload) => {
     return {
         type: PRELOAD,
         preload
+    }
+}
+
+export const followProgressAC = (followProgress) => {
+    return {
+        type: FOLLOWING_PROGRESS,
+        followProgress
     }
 }
 

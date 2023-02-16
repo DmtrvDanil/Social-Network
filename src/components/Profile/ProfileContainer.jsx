@@ -38,7 +38,6 @@ class ProfileCont extends React.Component {
         this.props.preloader(true);
             profileAPI.getProfile(userId).then(response => {
             this.props.preloader(false);
-            debugger;
             this.props.getProfile(response);
         })
     }

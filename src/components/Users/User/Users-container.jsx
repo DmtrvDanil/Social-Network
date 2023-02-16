@@ -1,5 +1,13 @@
 import React from "react";
-import {followAC, unfollowAC, setUsersAC, setSelPageAC, setCountUsersAC, preloadAC} from "../../../redux/users-reducer";
+import {
+    followAC,
+    unfollowAC,
+    setUsersAC,
+    setSelPageAC,
+    setCountUsersAC,
+    preloadAC,
+    followProgressAC
+} from "../../../redux/users-reducer";
 import {connect} from "react-redux";
 import User from "./User";
 import axios from "axios";
@@ -13,6 +21,7 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         countUsers: state.usersPage.usersCount,
         selectedPage: state.usersPage.selectedPage,
+        followingProgress: state.usersPage.followProgress,
         preload: state.preload
     }
 }
@@ -36,6 +45,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         preloader: (preload) => {
             dispatch(preloadAC(preload));
+        },
+        onFollowingProgress: (userId) => {
+            dispatch(followProgressAC(userId));
         }
     }
 }
@@ -63,7 +75,10 @@ class UsersCont extends React.Component {
     render() {
         let userElements =  this.props.usersPage.usersData.map((user) => {
             return (
-                <User userId={user.id} followStatus={user.followed} name={user.name} age={user.age} photo={user.photo} follow={this.props.onFollow} unfollow={this.props.onUnfollow}></User>
+                <User onFollowingProgress={this.props.onFollowingProgress}
+                      followingProgress={this.props.followingProgress}
+                      userId={user.id} followStatus={user.followed} name={user.name} age={user.age}
+                      photo={user.photo} follow={this.props.onFollow} unfollow={this.props.onUnfollow}></User>
             )
         })
         let pagesCount = this.props.countUsers / this.props.pageSize;
