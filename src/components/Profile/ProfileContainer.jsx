@@ -5,6 +5,7 @@ import {preloadAC} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import {useParams} from 'react-router-dom';
+import {profileAPI} from "../../api";
 
 let mapStateToProps = (state) => {
     return {
@@ -26,7 +27,6 @@ let mapDispatchToProps = (dispatch) => {
 
 export function withRouter(Children) {
     return (props) => {
-
         const match = {params: useParams()};
         return <Children {...props} match={match}/>
     }
@@ -36,13 +36,13 @@ class ProfileCont extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         this.props.preloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+            profileAPI.getProfile(userId).then(response => {
             this.props.preloader(false);
-            this.props.getProfile(response.data);
+            debugger;
+            this.props.getProfile(response);
         })
     }
     render() {
-        debugger;
         return (
                 <Profile {...this.props} profilePage={this.props.profilePage}></Profile>
         )

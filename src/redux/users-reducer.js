@@ -11,7 +11,8 @@ let initialState = {
         pageSize: 5,
         countUsers: 0,
         selectedPage: 2,
-        preload: true
+        preload: true,
+        followed: false
 }
 const  usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -20,7 +21,7 @@ const  usersReducer = (state = initialState, action) => {
                 ...state,
                 usersData: state.usersData.map(u => {
                     if (u.id === action.userId) {
-                            return {...u, followStatus: true}
+                            return {...u, followed: true}
                     }
                     return u;
                 })
@@ -31,7 +32,7 @@ const  usersReducer = (state = initialState, action) => {
                 ...state,
                 usersData: state.usersData.map(u => {
                     if (u.id === action.userId) {
-                        return {...u, followStatus: false}
+                        return {...u, followed: false}
                     }
                     return u;
                 })

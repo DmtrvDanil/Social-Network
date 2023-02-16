@@ -5,6 +5,7 @@ import User from "./User";
 import axios from "axios";
 import style from "../Users.module.css";
 import Preloader from "../../Preloader/Plreloader";
+import {usersAPI} from "../../../api";
 
 let mapStateToProps = (state) => {
     return {
@@ -39,15 +40,14 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-
 class UsersCont extends React.Component {
     componentDidMount() {
         if (this.props.usersPage.usersData.length === 0) {
             this.props.preloader(true);
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=${this.props.pageSize}`).then(response => {
+            usersAPI.getUsers(this.props.selectedPage, this.props.pageSize).then(response => {
                 this.props.preloader(false);
-                this.props.setUsers(response.data.items);
-                this.props.setCountUsers(response.data.totalCount);
+                this.props.setUsers(response.items);
+                this.props.setCountUsers(response.totalCount);
             })
         }
     }
@@ -55,16 +55,15 @@ class UsersCont extends React.Component {
     onPagePick = (pageNum) => {
         this.props.preloader(true);
         this.props.setCurPage(pageNum);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`).then(response => {
-            // this.props.preloader(false);
-            this.props.setUsers(response.data.items);
-            this.props.setCountUsers(response.data.totalCount);
+        usersAPI.getUserPage(pageNum, this.props.pageSize).then(response => {
+            this.props.setUsers(response.items);
+            this.props.setCountUsers(response.totalCount);
         })
     }
     render() {
         let userElements =  this.props.usersPage.usersData.map((user) => {
             return (
-                <User userId={user.id} followStatus={user.followStatus} name={user.name} age={user.age} photo={user.photo} follow={this.props.onFollow} unfollow={this.props.onUnfollow}></User>
+                <User userId={user.id} followStatus={user.followed} name={user.name} age={user.age} photo={user.photo} follow={this.props.onFollow} unfollow={this.props.onUnfollow}></User>
             )
         })
         let pagesCount = this.props.countUsers / this.props.pageSize;
