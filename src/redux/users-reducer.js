@@ -43,12 +43,9 @@ const  usersReducer = (state = initialState, action) => {
         case FOLLOWING_PROGRESS: {
             return {
                 ...state,
-                followProgress: action.followProgress ?
-                    state.followProgress.push(action.userId) :
+                followProgress: action.isFetching ?
+                    [...state.followProgress, action.userId] :
                     state.followProgress.filter(id => id != action.userId)
-                    // action.followProgress ?
-                    // [...state.followProgress, action.userId] :
-                    // state.followProgress.filter(id => id != action.userId)
             }
         }
         case SETUSERS: {
@@ -120,10 +117,11 @@ export const preloadAC = (preload) => {
     }
 }
 
-export const followProgressAC = (followProgress) => {
+export const followProgressAC = (isFetching, userId) => {
     return {
         type: FOLLOWING_PROGRESS,
-        followProgress
+        isFetching,
+        userId
     }
 }
 

@@ -46,8 +46,8 @@ let mapDispatchToProps = (dispatch) => {
         preloader: (preload) => {
             dispatch(preloadAC(preload));
         },
-        onFollowingProgress: (userId) => {
-            dispatch(followProgressAC(userId));
+        onFollowingProgress: (followProgress, userId) => {
+            dispatch(followProgressAC(followProgress, userId));
         }
     }
 }
