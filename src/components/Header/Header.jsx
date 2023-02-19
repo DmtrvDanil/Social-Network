@@ -5,7 +5,7 @@ const Header = (props) => {
         <header className={style.header}>
             <img className={style.icon} src="https://cdn-icons-png.flaticon.com/512/263/263080.png">
             </img>
-            <p>{props.login}</p>
+            <p>{props.login ? props.login : "Login"}</p>
         </header>
     );
 }

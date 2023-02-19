@@ -1,19 +1,22 @@
 import React from "react";
 import {
-    followAC,
-    unfollowAC,
-    setUsersAC,
-    setSelPageAC,
-    setCountUsersAC,
+    follow,
+    unfollow,
+    setUsers,
+    setSelPage,
+    setCountUsers,
+    preload,
     preloadAC,
-    followProgressAC
+    getUsersThunkCreator,
+    disfollowProgress,
+    usersOnPageThunkCreator,
+    unfollowThunkCreator,
+    followThunkCreator
 } from "../../../redux/users-reducer";
 import {connect} from "react-redux";
 import User from "./User";
-import axios from "axios";
 import style from "../Users.module.css";
 import Preloader from "../../Preloader/Plreloader";
-import {usersAPI} from "../../../api";
 
 let mapStateToProps = (state) => {
     return {
@@ -28,57 +31,27 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        onFollow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        onUnfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (usersData) => {
-            dispatch(setUsersAC(usersData));
-        },
-        setCurPage: (currentPage) => {
-            dispatch(setSelPageAC(currentPage));
-        },
-        setCountUsers: (usersCount) => {
-            dispatch(setCountUsersAC(usersCount));
-        },
         preloader: (preload) => {
             dispatch(preloadAC(preload));
-        },
-        onFollowingProgress: (followProgress, userId) => {
-            dispatch(followProgressAC(followProgress, userId));
         }
     }
 }
 
 class UsersCont extends React.Component {
     componentDidMount() {
-        if (this.props.usersPage.usersData.length === 0) {
-            this.props.preloader(true);
-            usersAPI.getUsers(this.props.selectedPage, this.props.pageSize).then(response => {
-                this.props.preloader(false);
-                this.props.setUsers(response.items);
-                this.props.setCountUsers(response.totalCount);
-            })
-        }
+        this.props.getUsersThunkCreator(this.props.selectedPage, this.props.pageSize);
     }
 
     onPagePick = (pageNum) => {
-        this.props.preloader(true);
-        this.props.setCurPage(pageNum);
-        usersAPI.getUserPage(pageNum, this.props.pageSize).then(response => {
-            this.props.setUsers(response.items);
-            this.props.setCountUsers(response.totalCount);
-        })
+        this.props.usersOnPageThunkCreator(pageNum, this.props.pageSize);
     }
     render() {
         let userElements =  this.props.usersPage.usersData.map((user) => {
             return (
-                <User onFollowingProgress={this.props.onFollowingProgress}
-                      followingProgress={this.props.followingProgress}
-                      userId={user.id} followStatus={user.followed} name={user.name} age={user.age}
-                      photo={user.photo} follow={this.props.onFollow} unfollow={this.props.onUnfollow}></User>
+            <User onFollowingProgress={this.props.disfollowProgress}
+                  followingProgress={this.props.followingProgress}
+                  userId={user.id} followStatus={user.followed} name={user.name} age={user.age}
+                  photo={user.photo} follow={this.props.followThunkCreator} unfollow={this.props.unfollowThunkCreator}></User>
             )
         })
         let pagesCount = this.props.countUsers / this.props.pageSize;
@@ -87,7 +60,6 @@ class UsersCont extends React.Component {
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
-
         return (
             <div>
                 <div>
@@ -96,7 +68,7 @@ class UsersCont extends React.Component {
                                      onClick={() => {this.onPagePick(p)}}>{p}</span>
                     })}
                 </div>
-                <Preloader preloaderStatus={this.props.preloader}></Preloader>
+                <Preloader preloaderStatus={this.props.preload}></Preloader>
                 {userElements}
             </div>
         )
@@ -104,7 +76,9 @@ class UsersCont extends React.Component {
 }
 
 
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersCont)
+const UsersContainer =  connect(mapStateToProps, {follow, unfollow, setUsers, setSelPage, preload,
+                                                                    setCountUsers, disfollowProgress,
+                                                                    getUsersThunkCreator, usersOnPageThunkCreator,
+                                                                    unfollowThunkCreator, followThunkCreator})(UsersCont);
 
 export  default UsersContainer;

@@ -9,7 +9,8 @@ import {profileAPI} from "../../api";
 
 let mapStateToProps = (state) => {
     return {
-        profilePage: state.profilePage
+        profilePage: state.profilePage,
+        isAuth: state.auth.isAuth
     }
 }
 

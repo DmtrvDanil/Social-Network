@@ -1,11 +1,13 @@
 import React from "react";
 import style from './Profile.module.css'
 import Preloader from "../Preloader/Plreloader";
-
+import {Navigate} from "react-router-dom";
 
 const Profile = (props) => {
+    if (!props.isAuth) return <Navigate  to={"/login"} />
     if (!props.profilePage.profilePage) return (<Preloader></Preloader>)
-    else return (
+    else
+    return (
         <div className={style.wrapper}>
             <div className={style.user}>
                 <img

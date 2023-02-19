@@ -1,9 +1,11 @@
 import React from "react";
 import style from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import Dialog from "./Dialog/Dialog";
 
 const Dialogs = (props) => {
+    debugger
+    if(!props.isAuth) return <Navigate to={"/login"}/>
     let dialogElements = props.dialogPage.dialogData.map((dialog) => {
         return (
             <Dialog message={dialog.message} name={dialog.name}></Dialog>

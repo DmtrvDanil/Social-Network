@@ -1,3 +1,5 @@
+import {headerAPI} from "../api";
+
 const SET_AUTH = 'SET_AUTH';
 
 
@@ -24,7 +26,7 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthAC = (userId, email, login) => {
+export const setAuth = (userId, email, login) => {
     return {
         type: SET_AUTH,
         userId,
@@ -33,5 +35,16 @@ export const setAuthAC = (userId, email, login) => {
     }
 }
 
+
+export const authThunkCreator = () => {
+    return (dispatch) => {
+        headerAPI.getAuth().then(response => {
+            if (response.resultCode === 0) {
+                let {id, login, email} = response.data;
+                dispatch(setAuth(id, email, login));
+            }
+        })
+    }
+}
 
 export default authReducer;

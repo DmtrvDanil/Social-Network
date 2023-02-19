@@ -7,7 +7,8 @@ let initialState = {
             {name: 'Tema', message: 'hello'},
             {name: 'Katya', message: 'hello_lol'}
         ],
-        messageText: 'Write your message'
+        messageText: 'Write your message',
+    auth: false
 }
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {

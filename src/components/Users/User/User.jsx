@@ -1,24 +1,12 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {followAPI} from "../../../api";
 
 const User = (props) => {
     let onFollow = () => {
-        props.onFollowingProgress(true, props.userId);
         if (props.followStatus) {
-            followAPI.unfollow(props.userId).then(response => {
-                    if (response.resultCode === 0) {
-                        props.unfollow(props.userId);
-                        props.onFollowingProgress(false, props.userId);
-                    }
-            })
+            props.unfollow(props.userId);
         } else {
-            followAPI.follow(props.userId).then(response => {
-                if (response.resultCode === 0) {
-                    props.follow(props.userId);
-                    props.onFollowingProgress(false, props.userId);
-                }
-            })
+            props.follow(props.userId);
         }
     }
     let photo = props.photo;

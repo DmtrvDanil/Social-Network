@@ -3,12 +3,8 @@ const PRELOAD= 'PRELOAD';
 
 let initialState = {
     profilePage: null,
-    //     {
-    //     name: 'Danil',
-    //     date: '02.05.2001',
-    //     city: 'California'
-    // },
-    preload: true
+    preload: true,
+    auth: false
 }
 
 const profileReducer = (state = initialState, action) => {
