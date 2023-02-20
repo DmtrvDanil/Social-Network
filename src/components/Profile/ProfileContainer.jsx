@@ -4,10 +4,13 @@ import {getProfileAC} from "../../redux/profile-reducer";
 import {preloadAC} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 import {profileAPI} from "../../api";
+import Dialogs from "../Dialogs/Dialogs";
+import {withAuthNavigate} from "../hoc/hoc";
 
 let mapStateToProps = (state) => {
+    // debugger
     return {
         profilePage: state.profilePage,
         isAuth: state.auth.isAuth
@@ -49,8 +52,21 @@ class ProfileCont extends React.Component {
     }
 }
 
+let mapStateToPropsForRedirect = (state) => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
 
-const ProfileContWithRouter = withRouter(ProfileCont);
+let authHocProfile = withAuthNavigate(ProfileCont);
+authHocProfile = connect(mapStateToPropsForRedirect)(authHocProfile);
+
+
+
+const ProfileContWithRouter = withRouter(authHocProfile);
+
 
 const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileContWithRouter);
 export default ProfileContainer;
+
+/////// перенести стейт в hoc!!!!!!
