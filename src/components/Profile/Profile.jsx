@@ -2,10 +2,15 @@ import React from "react";
 import style from './Profile.module.css'
 import {Navigate} from "react-router-dom";
 import Preloader from "../Preloader/Plreloader";
+import {Status} from "./status";
 
 const Profile = (props) => {
-    // if (!props.isAuth) return <Navigate  to={"/login"} />
-    if (!props.profilePage.profilePage) return (<Preloader></Preloader>)
+    if (!props.profilePage.profilePage) return (
+        <div>
+        <Preloader></Preloader>
+            <Status> </Status>
+        </div>
+)
     else
     return (
         <div className={style.wrapper}>
