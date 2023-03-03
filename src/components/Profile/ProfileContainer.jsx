@@ -1,19 +1,18 @@
 import React, {useEffect} from "react";
-import axios from "axios";
-import {getProfileAC} from "../../redux/profile-reducer";
+import {getProfileAC, getStatusAC} from "../../redux/profile-reducer";
 import {preloadAC} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import {Navigate, useParams} from 'react-router-dom';
 import {profileAPI} from "../../api";
-import Dialogs from "../Dialogs/Dialogs";
 import {withAuthNavigate} from "../hoc/hoc";
 
 let mapStateToProps = (state) => {
-    // debugger
+    debugger
     return {
         profilePage: state.profilePage,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        status: state.profilePage.status
     }
 }
 
@@ -24,6 +23,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         getProfile: (profileData) => {
             dispatch(getProfileAC(profileData));
+        },
+        getStatus: (status) => {
+            dispatch(getStatusAC(status));
         }
     }
 }
@@ -43,11 +45,16 @@ class ProfileCont extends React.Component {
             profileAPI.getProfile(userId).then(response => {
             this.props.preloader(false);
             this.props.getProfile(response);
-        })
+        });
+            profileAPI.getStatus(userId).then(response => {
+                debugger
+                this.props.getStatus(response);
+            })
     }
     render() {
+        debugger
         return (
-                <Profile {...this.props} profilePage={this.props.profilePage}></Profile>
+                <Profile {...this.props} status={this.props.status} profilePage={this.props.profilePage}></Profile>
         )
     }
 }

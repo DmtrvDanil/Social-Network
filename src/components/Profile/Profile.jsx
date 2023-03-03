@@ -5,6 +5,7 @@ import Preloader from "../Preloader/Plreloader";
 import {Status} from "./status";
 
 const Profile = (props) => {
+    debugger;
     if (!props.profilePage.profilePage) return (
         <div>
         <Preloader></Preloader>
@@ -12,11 +13,12 @@ const Profile = (props) => {
         </div>
 )
     else
+        debugger
     return (
         <div className={style.wrapper}>
             <div className={style.user}>
                 <h1>
-                    Hello its me
+                    {props.status}
                 </h1>
                 <img
                     src={props.profilePage.profilePage.photos.large ?
