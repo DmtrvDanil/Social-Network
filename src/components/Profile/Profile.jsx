@@ -9,7 +9,7 @@ const Profile = (props) => {
     if (!props.profilePage.profilePage) return (
         <div>
         <Preloader></Preloader>
-            <Status> </Status>
+            <Status statusText={props.statusTex} updateStatus={props.updateStatus}></Status>
         </div>
 )
     else

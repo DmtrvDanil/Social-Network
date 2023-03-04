@@ -44,7 +44,6 @@ export const followAPI = {
 
 export const profileAPI = {
     getProfile(userId) {
-
         return (
             instance.get(`profile/${userId}`).then(response => {
 
@@ -52,9 +51,18 @@ export const profileAPI = {
             })
         )
     },
+
     getStatus(userId) {
         return (
             instance.get(`profile/status/${userId}`).then(response => {
+                return response.data;
+            })
+        )
+    },
+
+    updateStatus(statusText) {
+        return (
+            instance.put(`profile/status`, {status: statusText}).then(response => {
                 return response.data;
             })
         )

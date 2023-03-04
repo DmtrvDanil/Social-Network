@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {getProfileAC, getStatusAC} from "../../redux/profile-reducer";
+import {getProfileAC, getStatusAC, updateStatusAC} from "../../redux/profile-reducer";
 import {preloadAC} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import Profile from "./Profile";
@@ -8,11 +8,11 @@ import {profileAPI} from "../../api";
 import {withAuthNavigate} from "../hoc/hoc";
 
 let mapStateToProps = (state) => {
-    debugger
     return {
         profilePage: state.profilePage,
         isAuth: state.auth.isAuth,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        statusText: state.profilePage.statusText
     }
 }
 
@@ -26,6 +26,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         getStatus: (status) => {
             dispatch(getStatusAC(status));
+        },
+        updateStatus: (statusText) => {
+            dispatch(updateStatusAC(statusText));
         }
     }
 }
@@ -46,15 +49,21 @@ class ProfileCont extends React.Component {
             this.props.preloader(false);
             this.props.getProfile(response);
         });
+
             profileAPI.getStatus(userId).then(response => {
-                debugger
                 this.props.getStatus(response);
-            })
+            });
+
+            profileAPI.updateStatus(this.props.statusText).then(response => {
+                this.props.updateStatus(response);
+            });
     }
     render() {
         debugger
         return (
-                <Profile {...this.props} status={this.props.status} profilePage={this.props.profilePage}></Profile>
+                <Profile {...this.props} status={this.props.status}
+                         profilePage={this.props.profilePage}
+                         statusTex={this.props.statusText}></Profile>
         )
     }
 }

@@ -1,11 +1,10 @@
 import React from "react";
 
-let statusRef = React.createRef();
 
 export class Status extends React.Component {
     state = {
         editMode: false,
-        statusText: 'Hello, its status',
+        statusText: this.props.statusText
     }
 
     editStatusClick() {
@@ -14,18 +13,23 @@ export class Status extends React.Component {
         })
     }
 
-    onChangeStatus() {
-        let statusText = statusRef.current.value;
-        this.setState({
-            statusText
-        })
-    }
+    // onChangeStatus() {
+    //     let statusText = statusRef.current.value;
+    //     this.setState({
+    //         statusText
+    //     })
+    // }
 
     onStatusSave() {
-        let statusText = statusRef.current.value;
         this.setState({
-            statusText,
             editMode: false
+        })
+        this.props.updateStatus();
+    }
+
+    onStatusChange = (e) => {
+        this.setState({
+            statusText: e.currentTarget.value
         })
     }
 
@@ -35,7 +39,7 @@ export class Status extends React.Component {
                 <div>
                     <div onDoubleClick={this.editStatusClick.bind(this)}>
                     <span>
-                        {this.state.statusText}
+                        {this.props.statusText}
                     </span>
                     </div>
                 </div>
@@ -43,9 +47,8 @@ export class Status extends React.Component {
         }
         return (
             <div>
-                <input type="text" ref={statusRef}
-                       value={this.state.statusText}
-                       onChange={this.onChangeStatus.bind(this)}/>
+                <input type="text" onChange={this.onStatusChange}
+                       value={this.state.statusText}/>
                 <button onClick={this.onStatusSave.bind(this)}>
                     Save your status
                 </button>

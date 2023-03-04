@@ -51,7 +51,7 @@ class UsersCont extends React.Component {
             <User onFollowingProgress={this.props.disfollowProgress}
                   followingProgress={this.props.followingProgress}
                   userId={user.id} followStatus={user.followed} name={user.name} age={user.age}
-                  photo={user.photo} follow={this.props.followThunkCreator} unfollow={this.props.unfollowThunkCreator}></User>
+                  photo={user.photos.large} follow={this.props.followThunkCreator} unfollow={this.props.unfollowThunkCreator}></User>
             )
         })
         let pagesCount = this.props.countUsers / this.props.pageSize;

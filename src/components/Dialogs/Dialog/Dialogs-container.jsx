@@ -7,7 +7,6 @@ import {Navigate} from "react-router-dom";
 import {withAuthNavigate} from "../../hoc/hoc";
 
 let mapStateToProps = (state) => {
-    debugger
     return {
         dialogPage: state.dialogPage,
         // isAuth: state.auth.isAuth
