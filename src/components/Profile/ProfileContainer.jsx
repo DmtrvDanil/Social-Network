@@ -45,21 +45,23 @@ class ProfileCont extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         this.props.preloader(true);
-            profileAPI.getProfile(userId).then(response => {
-            this.props.preloader(false);
-            this.props.getProfile(response);
-        });
-
+        if (userId) {
+                profileAPI.getProfile(userId).then(response => {
+                this.props.preloader(false);
+                this.props.getProfile(response);
+            });
             profileAPI.getStatus(userId).then(response => {
                 this.props.getStatus(response);
             });
+        }
 
             profileAPI.updateStatus(this.props.statusText).then(response => {
-                this.props.updateStatus(response);
+
+                this.props.getStatus(response.statusText);
+                // this.props.updateStatus(response.statusText);
             });
     }
     render() {
-        debugger
         return (
                 <Profile {...this.props} status={this.props.status}
                          profilePage={this.props.profilePage}

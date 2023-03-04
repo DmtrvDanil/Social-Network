@@ -5,15 +5,16 @@ import Preloader from "../Preloader/Plreloader";
 import {Status} from "./status";
 
 const Profile = (props) => {
-    debugger;
     if (!props.profilePage.profilePage) return (
         <div>
-        <Preloader></Preloader>
+        {/*<Preloader></Preloader>*/}
+            <h1>
+                hello
+            </h1>
             <Status statusText={props.statusTex} updateStatus={props.updateStatus}></Status>
         </div>
 )
     else
-        debugger
     return (
         <div className={style.wrapper}>
             <div className={style.user}>

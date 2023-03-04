@@ -13,18 +13,11 @@ export class Status extends React.Component {
         })
     }
 
-    // onChangeStatus() {
-    //     let statusText = statusRef.current.value;
-    //     this.setState({
-    //         statusText
-    //     })
-    // }
-
-    onStatusSave() {
+    onStatusSave = () => {
         this.setState({
             editMode: false
         })
-        this.props.updateStatus();
+        this.props.updateStatus(this.state.statusText);
     }
 
     onStatusChange = (e) => {
@@ -32,8 +25,8 @@ export class Status extends React.Component {
             statusText: e.currentTarget.value
         })
     }
-
     render() {
+        debugger
         if (!this.state.editMode) {
             return (
                 <div>
@@ -49,7 +42,7 @@ export class Status extends React.Component {
             <div>
                 <input type="text" onChange={this.onStatusChange}
                        value={this.state.statusText}/>
-                <button onClick={this.onStatusSave.bind(this)}>
+                <button onClick={this.onStatusSave}>
                     Save your status
                 </button>
             </div>
