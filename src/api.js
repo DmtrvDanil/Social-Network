@@ -25,6 +25,16 @@ export const usersAPI = {
     }
 };
 
+export const loginAPI = {
+    login(email, password) {
+        return (
+            instance.post(`login`).then(response => {
+                return response.data;
+            })
+        )
+    }
+};
+
 export const followAPI = {
     follow(userId) {
         return (
@@ -63,7 +73,6 @@ export const profileAPI = {
     updateStatus(statusText) {
         return (
             instance.put(`profile/status`, {status: statusText}).then(response => {
-                console.log(response);
                 return response.data;
             })
         )
@@ -79,3 +88,4 @@ export const headerAPI = {
         )
     }
 }
+
