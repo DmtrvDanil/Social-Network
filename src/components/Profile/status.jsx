@@ -1,4 +1,5 @@
 import React from "react";
+import {profileAPI} from "../../api";
 
 
 export class Status extends React.Component {
@@ -17,22 +18,30 @@ export class Status extends React.Component {
         this.setState({
             editMode: false
         })
-        this.props.updateStatus(this.state.statusText);
+        console.log(this.state.statusText);
+        // this.props.updateStatus(this.state.statusText);
     }
 
     onStatusChange = (e) => {
         this.setState({
             statusText: e.currentTarget.value
-        })
+        });
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.statusText !== this.props.statusText) {
+            this.setState({
+                statusTExt: this.props.statusText
+            });
+        }
+    }
+
     render() {
-        debugger
         if (!this.state.editMode) {
             return (
                 <div>
                     <div onDoubleClick={this.editStatusClick.bind(this)}>
                     <span>
-                        {this.props.statusText}
+                        {this.state.statusText}
                     </span>
                     </div>
                 </div>

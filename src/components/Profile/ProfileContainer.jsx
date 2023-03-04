@@ -56,11 +56,17 @@ class ProfileCont extends React.Component {
         }
 
             profileAPI.updateStatus(this.props.statusText).then(response => {
-
-                this.props.getStatus(response.statusText);
                 // this.props.updateStatus(response.statusText);
+                // this.props.getStatus(response.statusText);
+
+                profileAPI.getStatus(24313).then(response => {
+                    this.props.getStatus(response);
+                    console.log(response);
+                });
+
             });
     }
+
     render() {
         return (
                 <Profile {...this.props} status={this.props.status}
