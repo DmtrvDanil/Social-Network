@@ -17,7 +17,7 @@ const postReducer = (state = initialState, action) => {
             let newPost = {
                 name: "Tema",
                 age: '20',
-                message: state.postText
+                message: action.postText
             }
             let stateCopy = {
                 ...state,
@@ -38,9 +38,10 @@ const postReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (postText) => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        postText
     };
 }
 

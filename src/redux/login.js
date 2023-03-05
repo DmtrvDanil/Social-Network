@@ -30,12 +30,14 @@ export const loginDone = (email, password) => {
     }
 }
 
-export const loginThunkCreator = () => {
-    return (dispatch) => {
-        loginAPI.login(email, password).then(response => {
-            if (response.resultCode === 0) {
-                dispatch(loginDone(email, password));
-            }
-        })
-    }
-}
+// export const loginThunkCreator = () => {
+//     return (dispatch) => {
+//         loginAPI.login(email, password).then(response => {
+//             if (response.resultCode === 0) {
+//                 dispatch(loginDone(email, password));
+//             }
+//         })
+//     }
+// }
+
+export default loginReducer;
