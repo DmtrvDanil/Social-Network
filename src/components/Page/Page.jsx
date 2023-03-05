@@ -25,13 +25,6 @@ const Page = (props) => {
         <div className={style.page}>
             <div className='posts'>
                 <div className='addPost'>
-                    {/*<h3 className='posts__heading'>*/}
-                    {/*    My posts*/}
-                    {/*</h3>*/}
-                    {/*<textarea className='posts__textAdd' ref={textMessage} onChange={onUpdateText} value={props.postPage.postText}/>*/}
-                    {/*<button className='posts__btn' onClick={onAddPost}>*/}
-                    {/*    Send*/}
-                    {/*</button>*/}
                     <PostText onAddPost={onAddPost}></PostText>
                 </div>
                 <div className={style.post__wrapper}>

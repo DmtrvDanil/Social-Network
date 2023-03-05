@@ -1,8 +1,12 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import {loginAPI} from "../../api";
+import {connect} from "react-redux";
+import {loginThunkCreator, logoutThunkCreator} from "../../redux/auth-reducer";
 
-const Login = () => (
+
+
+
+let Login = (props) => (
     <div>
         <h1>Any place in your app!</h1>
         <Formik
@@ -19,10 +23,8 @@ const Login = () => (
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
+
+                props.loginThunkCreator(values.email, values.password);
             }}
         >
             {({ isSubmitting }) => (
@@ -39,4 +41,11 @@ const Login = () => (
         </Formik>
     </div>
 );
-    export default Login;
+
+const mapStateToProps = (state) => ({
+    isAuth: state.auth
+})
+
+export default connect(null, {loginThunkCreator, logoutThunkCreator})(Login);
+// export default Login;
+

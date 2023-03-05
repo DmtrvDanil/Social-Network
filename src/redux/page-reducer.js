@@ -26,13 +26,6 @@ const postReducer = (state = initialState, action) => {
             };
             return stateCopy;
         }
-        case UPDATE_POST_TEXT: {
-            let stateCopy = {
-                ...state,
-                postText: action.postText
-            };
-            return stateCopy;
-        }
         default:
             return state;
     }
@@ -45,12 +38,6 @@ export const addPostActionCreator = (postText) => {
     };
 }
 
-export const updateTextActionCreator = (message) => {
-    return {
-        type: UPDATE_POST_TEXT,
-        postText: message
-    }
-}
 
 
 export default postReducer;

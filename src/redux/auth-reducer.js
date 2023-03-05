@@ -1,6 +1,7 @@
-import {headerAPI} from "../api";
+import {authAPI, loginAPI, logoutAPI} from "../api";
 
 const SET_AUTH = 'SET_AUTH';
+const LOGOUT = 'LOGOUT';
 
 
 let initialState = {
@@ -35,10 +36,19 @@ export const setAuth = (userId, email, login) => {
     }
 }
 
+export const logout = (userId, email, login) => {
+    return {
+        type: LOGOUT,
+        userId,
+        email,
+        login
+    }
+}
+
 
 export const authThunkCreator = () => {
     return (dispatch) => {
-        headerAPI.getAuth().then(response => {
+        authAPI.getAuth().then(response => {
             if (response.resultCode === 0) {
                 let {id, login, email} = response.data;
                 dispatch(setAuth(id, email, login));
@@ -46,5 +56,32 @@ export const authThunkCreator = () => {
         })
     }
 }
+
+export const loginThunkCreator = (email, password) => {
+    return (dispatch) => {
+        loginAPI.login(email, password).then(response => {
+            if (response.resultCode === 0) {
+                authAPI.getAuth().then(response => {
+                    if (response.resultCode === 0) {
+                        let {id, login, email} = response.data;
+                        dispatch(setAuth(id, email, login));
+                    }
+                })
+            }
+        })
+    }
+}
+
+export const logoutThunkCreator = (logout, email, login) => {
+    return (dispatch) => {
+        logoutAPI.logout().then(response => {
+            if (response.resultCode === 0) {
+                dispatch(setAuth(logout, email, login));
+            }
+        })
+    }
+}
+
+
 
 export default authReducer;

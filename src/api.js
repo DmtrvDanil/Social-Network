@@ -25,16 +25,6 @@ export const usersAPI = {
     }
 };
 
-export const loginAPI = {
-    login(email, password) {
-        return (
-            instance.post(`login`).then(response => {
-                return response.data;
-            })
-        )
-    }
-};
-
 export const followAPI = {
     follow(userId) {
         return (
@@ -79,7 +69,7 @@ export const profileAPI = {
     }
 }
 
-export const headerAPI = {
+export const authAPI = {
     getAuth() {
         return (
             instance.get(`auth/me`).then(response => {
@@ -89,3 +79,22 @@ export const headerAPI = {
     }
 }
 
+export const loginAPI = {
+    login(email, password) {
+        return (
+            instance.post(`auth/login/`, {email: email, password: password}).then(response => {
+                return response.data;
+            })
+        )
+    },
+};
+
+export const logoutAPI = {
+    logout() {
+        return (
+            instance.delete(`auth/login/`).then(response => {
+                return response.data;
+            })
+        )
+    }
+}
