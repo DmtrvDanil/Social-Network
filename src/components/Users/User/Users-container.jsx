@@ -17,15 +17,34 @@ import {connect} from "react-redux";
 import User from "./User";
 import style from "../Users.module.css";
 import Preloader from "../../Preloader/Plreloader";
+import {
+    getCountUsers,
+    getFollowingProgress,
+    getPageSize, getPreload,
+    getSelectedPage,
+    getUsersPage
+} from "../../../redux/users-selector";
+
+// let mapStateToProps = (state) => {
+//     return {
+//         usersPage: state.usersPage,
+//         pageSize: state.usersPage.pageSize,
+//         countUsers: state.usersPage.usersCount,
+//         selectedPage: state.usersPage.selectedPage,
+//         followingProgress: state.usersPage.followProgress,
+//         preload: state.preload
+//     }
+// }
+
 
 let mapStateToProps = (state) => {
     return {
-        usersPage: state.usersPage,
-        pageSize: state.usersPage.pageSize,
-        countUsers: state.usersPage.usersCount,
-        selectedPage: state.usersPage.selectedPage,
-        followingProgress: state.usersPage.followProgress,
-        preload: state.preload
+        usersPage: getUsersPage(state),
+        pageSize: getPageSize(state),
+        countUsers: getCountUsers(state),
+        selectedPage: getSelectedPage(state),
+        followingProgress: getFollowingProgress(state),
+        preload: getPreload(state)
     }
 }
 
