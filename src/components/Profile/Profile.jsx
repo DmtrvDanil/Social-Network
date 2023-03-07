@@ -3,6 +3,7 @@ import style from './Profile.module.css'
 import {Navigate} from "react-router-dom";
 import Preloader from "../Preloader/Plreloader";
 import {Status} from "./status";
+import StatusWithHook from "./statusWithHook";
 
 const Profile = (props) => {
     if (!props.profilePage.profilePage) return (
@@ -11,7 +12,7 @@ const Profile = (props) => {
             <h1>
                 hello
             </h1>
-            <Status statusText={props.statusTex} updateStatus={props.updateStatus}></Status>
+            <StatusWithHook statusText={props.statusTex} updateStatus={props.updateStatus}></StatusWithHook>
         </div>
 )
     else
