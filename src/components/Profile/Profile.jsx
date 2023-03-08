@@ -8,7 +8,6 @@ import StatusWithHook from "./statusWithHook";
 const Profile = (props) => {
     if (!props.profilePage.profilePage) return (
         <div>
-        {/*<Preloader></Preloader>*/}
             <h1>
                 hello
             </h1>

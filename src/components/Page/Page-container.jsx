@@ -1,11 +1,12 @@
 import React from "react";
-import {addPostActionCreator, updateTextActionCreator} from "../../redux/page-reducer";
+import {addPostActionCreator, deletePostAC, updateTextActionCreator} from "../../redux/page-reducer";
 import Page from "./Page";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
+    console.log(state);
     return {
-        postPage: state.postPage
+        postPage: state.postPage,
     }
 }
 
@@ -13,6 +14,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         addPost: (postText) => {
             dispatch(addPostActionCreator(postText));
+        },
+        deletePost: (id) => {
+            dispatch(deletePostAC(id));
         }
     }
 }

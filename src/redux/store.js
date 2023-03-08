@@ -5,10 +5,10 @@ let store = {
     _state : {
         postPage: {
             postsData: [
-                {name: 'Danil', age: '21', message: 'lol'},
-                {name: 'Danil', age: '21', message: 'lol'},
-                {name: 'Danil', age: '21', message: 'lol'},
-                {name: 'Danil', age: '21', message: 'lol'}
+                {id: 1, name: 'Danil', age: '21', message: 'lol'},
+                {id: 2, name: 'Danil', age: '21', message: 'lol'},
+                {id: 3, name: 'Danil', age: '21', message: 'lol'},
+                {id: 4, name: 'Danil', age: '21', message: 'lol'}
             ],
             postText: 'something'
         },

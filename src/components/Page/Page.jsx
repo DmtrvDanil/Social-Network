@@ -7,7 +7,7 @@ import {Field, Form, Formik} from "formik";
 const Page = (props) => {
     let postElements = props.postPage.postsData.map((post) => {
         return (
-            <Post name={post.name} age={post.age} message={post.message}></Post>
+            <Post deletePost={props.deletePost} name={post.name} age={post.age} message={post.message} id={post.id}></Post>
         )
     })
 

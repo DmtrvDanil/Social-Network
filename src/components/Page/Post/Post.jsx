@@ -1,9 +1,18 @@
-import React from "react";
+import React, {Component} from "react";
 import style from './Post.module.css'
 
-const Post = (props) => {
-    return (
+const Post = React.memo(props => {
+    let onDeletePost = () => {
+        props.deletePost(props.id);
+    }
+        return (
         <div className={style.post}>
+            <div>
+                <button onClick={onDeletePost}>
+                    delete post
+                </button>
+            </div>
+            <div>
             <img src="https://www.shutterstock.com/image-vector/cat-avatar-profile-picture-7-260nw-1660656721.jpg"
                  alt="cat"/>
             <div className={style.userInfo}>
@@ -17,8 +26,8 @@ const Post = (props) => {
                     {props.message}
                 </p>
             </div>
+            </div>
         </div>
-    )
-}
-
+        )
+});
 export default Post;

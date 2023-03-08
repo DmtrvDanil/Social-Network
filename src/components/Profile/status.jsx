@@ -19,7 +19,6 @@ export class Status extends React.Component {
             editMode: false
         })
         console.log(this.state.statusText);
-        // this.props.updateStatus(this.state.statusText);
     }
 
     onStatusChange = (e) => {

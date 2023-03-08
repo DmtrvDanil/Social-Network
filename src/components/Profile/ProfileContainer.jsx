@@ -12,7 +12,7 @@ let mapStateToProps = (state) => {
         profilePage: state.profilePage,
         isAuth: state.auth.isAuth,
         status: state.profilePage.status,
-        statusText: state.profilePage.statusText
+        statusText: state.profilePage.statusText,
     }
 }
 
@@ -55,23 +55,20 @@ class ProfileCont extends React.Component {
             });
         }
 
-            profileAPI.updateStatus(this.props.statusText).then(response => {
-                // this.props.updateStatus(response.statusText);
-                // this.props.getStatus(response.statusText);
-
-                profileAPI.getStatus(24313).then(response => {
-                    this.props.getStatus(response);
-                    console.log(response);
-                });
-
-            });
+            // profileAPI.updateStatus(this.props.statusText).then(response => {
+            //     profileAPI.getStatus(24313).then(response => {
+            //         this.props.getStatus(response);
+            //         console.log(response);
+            //     });
+            //
+            // });
     }
 
     render() {
         return (
                 <Profile {...this.props} status={this.props.status}
                          profilePage={this.props.profilePage}
-                         statusTex={this.props.statusText}></Profile>
+                         statusTex={this.props.statusText} updateStatus={this.props.updateStatus}></Profile>
         )
     }
 }
