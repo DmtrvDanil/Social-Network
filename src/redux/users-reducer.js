@@ -134,15 +134,11 @@ export const disfollowProgress = (isFetching, userId) => {
     }
 }
 
-export const getUsersThunkCreator = (selectedPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(preload(true));
-        usersAPI.getUsers(selectedPage, pageSize).then(response => {
+export const getUsersThunkCreator = (selectedPage, pageSize) => async (dispatch) => {
+        const response = await usersAPI.getUsers(selectedPage, pageSize)
             dispatch(preload(false));
             dispatch(setUsers(response.items));
             dispatch(setCountUsers(response.totalCount));
-        })
-    }
 }
 
 export const usersOnPageThunkCreator = (pageNum, pageSize) => {

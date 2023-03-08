@@ -25,18 +25,6 @@ import {
     getUsersPage
 } from "../../../redux/users-selector";
 
-// let mapStateToProps = (state) => {
-//     return {
-//         usersPage: state.usersPage,
-//         pageSize: state.usersPage.pageSize,
-//         countUsers: state.usersPage.usersCount,
-//         selectedPage: state.usersPage.selectedPage,
-//         followingProgress: state.usersPage.followProgress,
-//         preload: state.preload
-//     }
-// }
-
-
 let mapStateToProps = (state) => {
     return {
         usersPage: getUsersPage(state),
