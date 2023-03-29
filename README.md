@@ -1,5 +1,6 @@
 # Getting Started with Create React App
-For install need npm install --force
+For install: 
+### `npm install --force`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
